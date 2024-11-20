@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/code.css">
+    <title>Code Editor</title>
+    <style>
+        #questionDisplay {
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Code Editor</h1>
+        
+        <!-- Display the question -->
+        <div id="questionDisplay">Loading question...</div>
+
+        <!-- Language Selection -->
+        <select id="langSelect">
+            <option value="cpp">C++</option>
+            <option value="python3">Python</option>
+            <option value="java">Java</option>
+            <option value="c">C</option>
+        </select>
+
+        <!-- Code Input -->
+        <textarea id="codeInput" rows="10" placeholder="Write your code here..."></textarea>
+        <button id="runCodeBtn">Run Code</button>
+
+        <!-- Output -->
+        <p id="output"></p>
+    </div>
+
+    <script>
+        // Step 1: Created an object to hold questions
+        const questions = {
+            1: "Given an array arr[] and an integer k where k is smaller than the size of the array, the task is to find the kth smallest element in the given array.",
+            2: [
+                "Given an array of integers. Find the Inversion Count in the array. Two elements arr[i] and arr[j] form an inversion if arr[i] > arr[j] and i < j.",
+                "Inversion Count: For an array, inversion count indicates how far (or close) the array is from being sorted. If the array is already sorted then the inversion count is 0.",
+                "If an array is sorted in the reverse order then the inversion count is the maximum."
+            ],
+            3: [
+                "Given an array arr. Your task is to find the minimum and maximum elements in the array.",
+                "Note: Return an array that contains two elements the first one will be a minimum element and the second will be a maximum of an array.",
+            ],
+            4: ["Given an array of strings, return all groups of strings that are anagrams. The groups must be created in order of their appearance in the original array."," Look at the sample case for clarification.",
+            "Input:",
+             "N = 5",
+                "words[] = {act,god,cat,dog,tac}",
+                "Output:",
+                "act cat tac ",
+                "god dog",
+                "Explanation:",
+                "There are 2 groups of",
+                "anagrams god, dog make group 1.",
+                "act, cat, tac make group 2.",
+            ],
+            5: [
+                 "Given an array arr[] denoting heights of N towers and a positive integer K.",
+                 "For each tower, you must perform exactly one of the following operations exactly once.",
+                 "Increase the height of the tower by K",
+                 "Decrease the height of the tower by K",
+                 "Find out the minimum possible difference between the height of the shortest and tallest towers after you have modified each tower.",
+                 "Note: It is compulsory to increase or decrease the height by K for each tower. After the operation, the resultant array should not contain any negative integers.",
+
+            ]
+
+        };
+
+        // Step 2: Get the question ID from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const questionId = urlParams.get('id');
+
+        // Step 3: Display the corresponding question
+        const questionText = questions[questionId];
+        if (questionText) {
+            // Check if it's an array and format it
+            if (Array.isArray(questionText)) {
+                document.getElementById('questionDisplay').innerHTML = questionText.join("<br>");
+            } else {
+                document.getElementById('questionDisplay').innerText = questionText;
+            }
+        } else {
+            document.getElementById('questionDisplay').innerText = "Question not found.";
+        }
+    </script>
+    <script src="../js/code.js"></script>
+</body>
+</html>
